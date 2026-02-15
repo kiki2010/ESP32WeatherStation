@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 State</title>
+</head>
+<body>
+    <h1>ESP32 State</h1>
+
+    <script>
+        const MAX_DELAY = 20000;
+        
+        fetch("https://script.google.com/macros/s/AKfycbzTI0NRTNP6PW_kUnbob6XYCNtjw5cDp5bdyz2O6fh_YYdO4xXq2J0OuOgZH0YJOHxNtw/exec?read")
+            .then (r => r.json())
+            .then (data => {
+                const last = new Date(data.timestamp);
+                const now = new Date();
+
+                if (now - last < MAX_DELAY) {
+                    document.getElementById("state").innerText = "Online";
+                } else {
+                    document.getElementById("state").innerText = "Offline";
+                }
+            });
+    </script>
+</body>
+</html>
